@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ход конем</title>
+    <script type = "text/javascript" src = "script.js"></script>
+  </head>
+  <body>
+    <form name = "form1" action="#">
+	
+      <h2>Ход конем</h2>
+
+      <label>Исходное положение:</label>
+      <input type="text"  name='arg'>
+      <br />
+      <br />
+	
+      <input type="button" value="Вычислить" onclick="mov(arg.value)">
+      <p><span id="result_multi"></span></p>
+    </form>
+
+<script>
+
+const num1 = ["A", "B", "C", "D", "E", "F", "G", "H"]; 
+const num2 = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// Конвертирование букв в цифры
+function convertC(Z) {
+  let k = -1;
+  
+  for (i = 0; i < num1.length; i++) {
+    if (Z === num1[i]) {
+      k = i;
+      break;
+    }
+  }
+
+  if (k === -1) {
+    return  "err";
+  } else {
+    return num2[k];
+  }
+}
+
+
+// Конвертирование цифр в буквы
+function convertN(Z) {
+  let k = -1;
+  
+  for (t = 0; t < num2.length; t++) {
+    if (Z === num2[t]) {
+      k = t;
+      break;
+    }
+  }
+  
+  if (k === -1) {
+    return  "err";
+  } else {
+	return num1[k];
+  }
+}
+
+// Расчет всех ходов
+function mov(a) {
+  // Переводим буквы в цифры
+  let x = parseInt(convertC((a[0].toUpperCase())));	
+  let y = parseInt(a[1]);
+  let str = '';	
+  // Перебираем ходы
+  for (i = 1; i <= 8; i++) {
+    for (j = 1; j <= 8; j++) {
+      let d1 = Math.abs(i-x);
+      let d2 = Math.abs(j-y);
+      if(((d1 === 1)&&(d2 === 2))||((d1 === 2)&&(d2 === 1))) {
+	    str=str + ' ' + convertN(i) + j;
+	  }
+    }
+  }
+  // Выводим все ходы
+  alert(str);
+}
+
+</script>
+
+</body>
+</html>
