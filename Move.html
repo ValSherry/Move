@@ -67,13 +67,17 @@ function mov(a) {
   let y = parseInt(a[1]);
   let str = '';	
   // Перебираем ходы
-  for (i = 1; i <= 8; i++) {
-    for (j = 1; j <= 8; j++) {
-      let d1 = Math.abs(i-x);
-      let d2 = Math.abs(j-y);
-      if(((d1 === 1)&&(d2 === 2))||((d1 === 2)&&(d2 === 1))) {
-	    str=str + ' ' + convertN(i) + j;
-	  }
+  if ((x<1)||(x>8)||(y<1)||(y>8)) {
+  str='Некорректный ввод значений'
+  } else {
+    for (i = 1; i <= 8; i++) {
+      for (j = 1; j <= 8; j++) {
+        let d1 = Math.abs(i-x);
+        let d2 = Math.abs(j-y);
+        if(((d1 === 1)&&(d2 === 2))||((d1 === 2)&&(d2 === 1))) {
+	      str=str+' '+convertN(i)+j;
+	    }
+      }
     }
   }
   // Выводим все ходы
